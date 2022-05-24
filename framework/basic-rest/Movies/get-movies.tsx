@@ -1,4 +1,3 @@
-// import { API_ENDPOINTS } from "@framework/utils/api-endpoints";
 import { useInfiniteQuery } from "react-query";
 import { API_ENDPOINTS } from "../../utils/api-endpoints";
 import http from "../../utils/http";
