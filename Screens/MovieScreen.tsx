@@ -4,17 +4,18 @@ import { useConfigurationQuery } from '../framework/basic-rest/get-configuration
 import { useMoviesQuery } from '../framework/basic-rest/Movies/get-movies';
 import ErrorScreen from './ErrorScreen';
 import LoadingScreen from './LoadingScreen';
-import { Movie } from '../components/Movie';
+import  Movie  from '../components/Movie';
+import { MovieType } from '../framework/basic-rest/Movies/get-movies';
 
 export default function MovieScreen() {
   const {data: movieData, isLoading: isLoadingMovies, error: errorMovies, hasNextPage, fetchNextPage, isFetching} = useMoviesQuery();
   const {data: configurationData, isLoading: isLoadingConfiguration, error: errorConfiguration} = useConfigurationQuery();
 
   const renderItem: (item: any) => any = ({item}) => {
-    return <Movie movie={item} configuration = {configurationData} />;
+    return <Movie movie={item} configuration = {configurationData!} />;
   }
-  const keyExtractor: (item: any) => any = (item) => {
-    return item.id
+  const keyExtractor: (item: MovieType) => string = (item) => {
+    return item.id.toString();
   }
 
   const loadMore = () => {
@@ -27,6 +28,7 @@ export default function MovieScreen() {
   if(errorMovies || errorConfiguration)
       return <ErrorScreen />
 
+  
   return (
     <SafeAreaView style = {styles.container}>
       <FlatList onEndReached={loadMore} contentContainerStyle = {{flexGrow: 1}} data = {movieData!.pages.map((page: any) =>  page).flat()} renderItem = {renderItem} keyExtractor={keyExtractor}  onEndReachedThreshold = {0.2} />
