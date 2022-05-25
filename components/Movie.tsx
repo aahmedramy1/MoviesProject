@@ -23,10 +23,10 @@ const Movie: React.FC<{ movie: MovieType, configuration: ConfigurationType }> = 
             }}
             resizeMode={"center"}
           />
-          <Text style = {styles.boldText}>{movie.title}</Text>
+          <Text style = {[styles.boldText, { marginTop:windowHeight * 0 }]}>{movie.title}</Text>
           <Text style = {styles.boldText}>Release date</Text>
           <Text style = {{marginTop: windowHeight * 0.01}}>{changeDateFormat(movie.release_date)}</Text>
-          <Text style = {styles.boldText}>OverView</Text>
+          <Text style = {styles.boldText}>Overview</Text>
           <Text style = {{marginTop: windowHeight * 0.01, textAlign: "center", paddingHorizontal: "8%"}}>{movie.overview}</Text>
       </View>
   );
