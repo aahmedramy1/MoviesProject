@@ -9,10 +9,8 @@ const Movie: React.FC<{ movie: MovieType, configuration: ConfigurationType }> = 
     /*
         change format of date from yyyy/mm/dd to dd/mm/yyyy
     */
-    var splitString = str.split("-");
-    var reverseArray = splitString.reverse();
-    var joinArray = reverseArray.join("-");
-    return joinArray;
+    let date = new Date(str);
+    return date.toLocaleDateString("en-us");
 }
   return (
       <View style={styles.container}>
